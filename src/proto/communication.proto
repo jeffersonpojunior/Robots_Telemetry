@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package communication;
+
+message Feedback {
+  // Robot ID
+  uint32 id = 1;
+
+  // Sensors
+  double battery = 5;
+  double kickLoad = 6;
+  bool irBall = 7;
+  
+  // Motors
+  Motors velocity = 8;
+  Motors current = 9;
+  
+  // Timestamp
+  uint64 timestamp = 10;
+}
+
+message Motors {
+  double m1 = 1;
+  double m2 = 2;
+  double m3 = 3;
+  double m4 = 4;
+}
+
