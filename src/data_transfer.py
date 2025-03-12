@@ -1,17 +1,21 @@
 import socket
 import struct
+import os
+from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from proto import communication_pb2  # Protobuf data structure
+
+load_dotenv()
 
 # Multicast settings
 MULTICAST_GROUP = '224.0.0.1'
 RECEIVE_PORT = 19900
 
 # database settings (InfluxDB)
-influx_url = "https://us-east-1-1.aws.cloud2.influxdata.com"
-influx_token = "0wm-XUgGS_MHJ8wBQ5kzW56YiwMlk_IHD5UF9uqEUkBac5tyBQcfAxasVxSL8bOUfYP67T0ioN87ehJaaUmqnA=="
-influx_org = "CIn"
-influx_bucket = "RobotsTelemetry_db"
+influx_url = os.getenv("influx_url")
+influx_token = os.getenv("influx_token")
+influx_org = os.getenv("influx_org")
+influx_bucket = os.getenv("influx_bucket")
 
 # Initializing the InfluxDB client
 client = InfluxDBClient(url=influx_url, token=influx_token, org=influx_org)
